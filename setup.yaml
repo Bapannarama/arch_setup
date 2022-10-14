@@ -1,0 +1,127 @@
+- name: First setup Arch Linux
+  hosts: localhost
+  tasks:
+  - name: Install Pacman packages
+    community.general.pacman:
+      name:
+      - clementine
+      - keepassxc
+      - firefox
+      - okular
+      - python-pip
+      - ffmpeg
+      - gst-plugins-good
+      - gst-plugins-bad
+      - gst-plugins-ugly
+      - filelight
+      - partitionmanager
+      - kfind
+      - adobe-source-han-sans-jp-fonts
+      - adobe-source-han-serif-jp-fonts
+      - otf-ipafont
+      - ttf-hanazono
+      - ttf-sazanami
+      - adobe-source-han-sans-kr-fonts
+      - ttf-baekmuk
+      - gnome-keyring
+      - noto-fonts-emoji
+      - rsync
+      - kdeconnect
+      - sshfs
+      - steam
+      - steam-native-runtime
+      - gwenview
+      - kcalc
+      - wine
+      - wine-mono
+      - wine-gecko
+      - winetricks
+      - kdialog
+      - unrar
+      - p7zip
+      - vbam-wx
+      - dwarffortress
+      - qbittorrent
+      - kate
+      - blender
+      - krita
+      - kimageformats
+      - qt5-imageformats
+      - calibre
+      - man
+      - vlc
+      - kcm-wacomtablet
+      - colord-kde
+      - hunspell
+      - hunspell-en_gb
+      - base-devel
+      - tree
+      - nmap
+      - kiten
+      - spectacle
+      - kate
+      - breeze-gtk
+      - kde-gtk-config
+      state: latest
+    become: yes
+
+  - name: Remove Pacman packages
+    community.general.pacman:
+      name:
+      - kwrite
+      state: absent
+    become: yes
+
+  - name: Pull yay
+    ansible.builtin.git:
+      repo: https://aur.archlinux.org/yay.git
+      dest: /tmp
+
+  - name: Build yay
+    command: chdir=/tmp/yay makepkg -si
+
+  - name: Create .inputrc
+    ansible.builtin.file:
+      path: /home/bapanna/.input.rc
+      state: touch
+      owner: bapanna
+      group: bapanna
+      mode: '0600'
+
+  - name: Bash case insensitive autocomplete
+    ansible.builtin.lineinfile:
+      path: /home/bapanna/.inputrc
+      state: present
+      line: $include /etc/inputrc
+
+  - name: Bash case insensitive autocomplete 2
+    ansible.builtin.lineinfile:
+      path: /home/bapanna/.inputrc
+      state: present
+      line: set completion-ignore-case On
+
+# yay -S minecraft-launcher dropbox spotify discord hunspell-nb proton-ge-custom-bin
+
+  - name: Copy wacom scrolling script to user home directory
+    ansible.builtin.copy:
+      src: "{{ playbook_dir }}/.wacom_scrolling.sh"
+      dest: "{{ ansible_env.HOME }}"
+      owner: "{{ ansible_env.USER }}"
+
+  - name: Copy wacom scrolling desktop file to home directory
+    ansible.builtin.copy:
+      src: "{{ playbook_dir }}/wacom_scrolling.sh.desktop"
+      dest: "{{ ansible_env.HOME }}/.config/autostart/"
+      owner: "{{ ansibe_env.USER }}"
+
+  - name: Copy wacom tablet configs
+    ansible.builtin.copy:
+      src: "{{ playbook_dir }}/tabletprofilesrc"
+      dest: "{{ ansible_env.HOME }}/.config/"
+      owner: "{{ ansible_env.USER }}"
+
+  - name: Copy keyboard shortcuts
+    ansible.builtin.copy:
+      src: "{{ playbook_dir }}/kglobalshortcutsrc"
+      dest: "{{ ansible_env.HOME }}/.config"
+      owner: "{{ ansible_env.USER }}"

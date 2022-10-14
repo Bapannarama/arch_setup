@@ -1,0 +1,36 @@
+[056A:0378]
+CurrentProfileEntry=-1
+ProfileRotationList=
+
+[056A:0378][Default2][eraser]
+Button1=1
+Button2=2
+Button3=3
+Mode=absolute
+PressureCurve=0 0 100 100
+RawSample=4
+Rotate=auto
+ScreenSpace=desktop
+Suppress=2
+TabletPcButton=off
+Threshold=27
+
+[056A:0378][Default2][pad]
+Button1=0
+Button2=0
+Button3=0
+Button4=key ctrl alt shift s
+
+[056A:0378][Default2][stylus]
+Area=0 0 0 0
+Button1=1
+Button2=2
+Button3=3
+Mode=absolute
+PressureCurve=0 0 100 100
+RawSample=4
+Rotate=auto
+ScreenSpace=desktop
+Suppress=2
+TabletPcButton=off
+Threshold=27
