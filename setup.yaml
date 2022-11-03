@@ -57,6 +57,7 @@
       - base-devel
       - tree
       - nmap
+      - tcpdump
       - kiten
       - spectacle
       - kate
