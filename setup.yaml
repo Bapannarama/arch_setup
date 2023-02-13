@@ -63,6 +63,12 @@
       - kate
       - breeze-gtk
       - kde-gtk-config
+      - qt5-xmlpatterns
+      - konqueror
+      - jq
+      - bash-completion
+      - rustup
+      - base-devel
       state: latest
     become: yes
 
