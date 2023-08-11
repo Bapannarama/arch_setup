@@ -4,7 +4,8 @@
   - name: Install Pacman packages
     community.general.pacman:
       name:
-      - clementine
+      - git
+      - strawberry
       - keepassxc
       - firefox
       - okular
@@ -32,7 +33,7 @@
       - steam-native-runtime
       - gwenview
       - kcalc
-      - wine
+      - wine-staging
       - wine-mono
       - wine-gecko
       - winetricks
@@ -72,54 +73,59 @@
       state: latest
     become: yes
 
-  - name: Remove Pacman packages
-    community.general.pacman:
-      name:
-      - kwrite
-      state: absent
-    become: yes
+  # - name: Remove Pacman packages
+  #   community.general.pacman:
+  #     name:
+  #     - kwrite
+  #     state: absent
+  #   become: yes
 
-  - name: Pull yay
-    ansible.builtin.git:
-      repo: https://aur.archlinux.org/yay.git
-      dest: /tmp
-
-  - name: Build yay
-    command: chdir=/tmp/yay makepkg -si
+  # Can't build as it requires user interaction
+  # - name: Pull yay
+  #   ansible.builtin.git:
+  #     repo: https://aur.archlinux.org/yay.git
+  #     dest: /tmp/yay
+  # - name: Build yay
+  #   command: chdir=/tmp/yay makepkg -si
 
   - name: Create .inputrc
     ansible.builtin.file:
-      path: /home/bapanna/.input.rc
+      path: /home/bapanna/.inputrc
       state: touch
       owner: bapanna
       group: bapanna
-      mode: '0600'
+      mode: '0644'
 
   - name: Bash case insensitive autocomplete
     ansible.builtin.lineinfile:
-      path: /home/bapanna/.inputrc
+      path: "{{ ansible_env.HOME }}/.inputrc"
       state: present
       line: $include /etc/inputrc
 
   - name: Bash case insensitive autocomplete 2
     ansible.builtin.lineinfile:
-      path: /home/bapanna/.inputrc
+      path: "{{ ansible_env.HOME }}/.inputrc"
       state: present
       line: set completion-ignore-case On
 
-# yay -S minecraft-launcher dropbox spotify discord hunspell-nb proton-ge-custom-bin
+  - name: assdg
+    debug:
+      msg: "{{ ansible_env }}"
+
+  # yay -S minecraft-launcher dropbox spotify discord hunspell-nb proton-ge-custom-bin
 
   - name: Copy wacom scrolling script to user home directory
     ansible.builtin.copy:
       src: "{{ playbook_dir }}/.wacom_scrolling.sh"
       dest: "{{ ansible_env.HOME }}"
       owner: "{{ ansible_env.USER }}"
+      mode: "+x"
 
   - name: Copy wacom scrolling desktop file to home directory
     ansible.builtin.copy:
       src: "{{ playbook_dir }}/wacom_scrolling.sh.desktop"
       dest: "{{ ansible_env.HOME }}/.config/autostart/"
-      owner: "{{ ansibe_env.USER }}"
+      owner: "{{ ansible_env.USER }}"
 
   - name: Copy wacom tablet configs
     ansible.builtin.copy:
@@ -130,5 +136,9 @@
   - name: Copy keyboard shortcuts
     ansible.builtin.copy:
       src: "{{ playbook_dir }}/kglobalshortcutsrc"
-      dest: "{{ ansible_env.HOME }}/.config"
+      dest: "{{ ansible_env.HOME }}/.config/"
       owner: "{{ ansible_env.USER }}"
+
+  - name: Run wacom scrolling script
+    ansible.builtin.command:
+      cmd: "{{ ansible_env.HOME }}/.wacom_scrolling.sh"
