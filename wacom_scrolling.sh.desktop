@@ -1,6 +1,6 @@
 [Desktop Entry]
 Comment=Fix wacom middle button scrolling
-Exec=/home/bapanna/.wacom_scrolling.sh
+Exec=/home/bapanna/wacom_scrolling.sh
 Icon=preferences-desktop-tablet
 Name=wacom_scrolling.sh
 StartupNotify=false
