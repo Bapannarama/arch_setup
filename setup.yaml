@@ -1,3 +1,10 @@
+- name: Remove Pacman packages
+  community.general.pacman:
+    name:
+    - kwrite
+    state: absent
+  become: yes
+
 - name: First setup Arch Linux
   hosts: localhost
   tasks:
@@ -44,7 +51,6 @@
       - dwarffortress
       - qbittorrent
       - kate
-      - blender
       - krita
       - kimageformats
       - qt5-imageformats
@@ -56,12 +62,11 @@
       - hunspell
       - hunspell-en_gb
       - base-devel
-      - tree
       - nmap
+      - tree
       - tcpdump
       - kiten
       - spectacle
-      - kate
       - breeze-gtk
       - kde-gtk-config
       - qt5-xmlpatterns
@@ -74,13 +79,6 @@
       - xdg-desktop-portal-kde
       state: latest
     become: yes
-
-  # - name: Remove Pacman packages
-  #   community.general.pacman:
-  #     name:
-  #     - kwrite
-  #     state: absent
-  #   become: yes
 
   # Can't build as it requires user interaction
   # - name: Pull yay
@@ -114,7 +112,7 @@
     debug:
       msg: "{{ ansible_env }}"
 
-  # yay -S minecraft-launcher dropbox spotify discord hunspell-nb proton-ge-custom-bin
+  # yay -S minecraft-launcher dropbox spotify hunspell-nb
 
   - name: Copy wacom scrolling script to user home directory
     ansible.builtin.copy:
