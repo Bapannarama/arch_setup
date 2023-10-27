@@ -11,19 +11,57 @@
   - name: Install Pacman packages
     community.general.pacman:
       name:
+      # command line tools
       - git
-      - strawberry
-      - keepassxc
-      - firefox
-      - okular
       - python-pip
       - ffmpeg
-      - gst-plugins-good
-      - gst-plugins-bad
-      - gst-plugins-ugly
+      - rsync
+      - unrar
+      - p7zip
+      - man
+      - nmap
+      - tree
+      - tcpdump
+      - jq
+      - bash-completion
+      - rustup
+      - base-devel
+      - yt-dlp
+      # GUI applications 
+      - firefox
+      - kdeconnect
+      - strawberry
+      - keepassxc
+      - okular
       - filelight
       - partitionmanager
       - kfind
+      - steam
+      - steam-native-runtime
+      - gwenview
+      - kcalc
+      - vbam-wx
+      - dwarffortress
+      - qbittorrent
+      - krita
+      - calibre
+      - vlc
+      - kiten
+      - spectacle
+      # Libraries + dependencies
+      - gst-plugins-good
+      - gst-plugins-bad
+      - gst-plugins-ugly
+      - gnome-keyring # for minecraft
+      - sshfs
+      - kdialog
+      - kimageformats
+      - qt5-imageformats
+      - kcm-wacomtablet
+      - colord-kde
+      - xdg-desktop-portal
+      - xdg-desktop-portal-kde
+      # Fonts
       - adobe-source-han-sans-jp-fonts
       - adobe-source-han-serif-jp-fonts
       - otf-ipafont
@@ -31,52 +69,14 @@
       - ttf-sazanami
       - adobe-source-han-sans-kr-fonts
       - ttf-baekmuk
-      - gnome-keyring
       - noto-fonts-emoji
-      - rsync
-      - kdeconnect
-      - sshfs
-      - steam
-      - steam-native-runtime
-      - gwenview
-      - kcalc
+      - hunspell
+      - hunspell-en_gb
+      # Wine
       - wine-staging
       - wine-mono
       - wine-gecko
       - winetricks
-      - kdialog
-      - unrar
-      - p7zip
-      - vbam-wx
-      - dwarffortress
-      - qbittorrent
-      - kate
-      - krita
-      - kimageformats
-      - qt5-imageformats
-      - calibre
-      - man
-      - vlc
-      - kcm-wacomtablet
-      - colord-kde
-      - hunspell
-      - hunspell-en_gb
-      - base-devel
-      - nmap
-      - tree
-      - tcpdump
-      - kiten
-      - spectacle
-      - breeze-gtk
-      - kde-gtk-config
-      - qt5-xmlpatterns
-      - konqueror
-      - jq
-      - bash-completion
-      - rustup
-      - base-devel
-      - xdg-desktop-portal
-      - xdg-desktop-portal-kde
       state: latest
     become: yes
 
@@ -107,10 +107,6 @@
       path: "{{ ansible_env.HOME }}/.inputrc"
       state: present
       line: set completion-ignore-case On
-
-  - name: assdg
-    debug:
-      msg: "{{ ansible_env }}"
 
   # yay -S minecraft-launcher dropbox spotify hunspell-nb
 
