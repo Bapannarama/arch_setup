@@ -88,6 +88,8 @@
   # - name: Build yay
   #   command: chdir=/tmp/yay makepkg -si
 
+  # yay -S minecraft-launcher dropbox spotify hunspell-nb tor-browser-bin mullvad-vpn-bin
+
   - name: Create .inputrc
     ansible.builtin.file:
       path: /home/bapanna/.inputrc
@@ -107,8 +109,6 @@
       path: "{{ ansible_env.HOME }}/.inputrc"
       state: present
       line: set completion-ignore-case On
-
-  # yay -S minecraft-launcher dropbox spotify hunspell-nb
 
   - name: Copy wacom scrolling script to user home directory
     ansible.builtin.copy:
