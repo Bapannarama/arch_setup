@@ -61,6 +61,7 @@
       - colord-kde
       - xdg-desktop-portal
       - xdg-desktop-portal-kde
+      - vulkan-radeon
       # Fonts
       - adobe-source-han-sans-jp-fonts
       - adobe-source-han-serif-jp-fonts
