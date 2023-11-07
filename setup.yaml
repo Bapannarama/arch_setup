@@ -45,7 +45,7 @@
       - qbittorrent
       - krita
       - calibre
-      - vlc
+      - smplayer
       - kiten
       - spectacle
       # Libraries + dependencies
