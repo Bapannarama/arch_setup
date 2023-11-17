@@ -46,6 +46,7 @@
       - krita
       - calibre
       - smplayer
+      - vlc
       - kiten
       - spectacle
       # Libraries + dependencies
