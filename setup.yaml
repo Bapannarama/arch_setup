@@ -55,6 +55,7 @@
       - gst-plugins-ugly
       - gnome-keyring # for minecraft
       - sshfs
+      - exfatprogs
       - kdialog
       - kimageformats
       - qt5-imageformats
