@@ -1,13 +1,15 @@
-- name: Remove Pacman packages
-  community.general.pacman:
-    name:
-    - kwrite
-    state: absent
-  become: yes
 
 - name: First setup Arch Linux
   hosts: localhost
   tasks:
+  - name: Remove Pacman packages
+    community.general.pacman:
+      name:
+      - kwrite
+      - vim
+      - vim-runtime
+      state: absent
+    become: yes
   - name: Install Pacman packages
     community.general.pacman:
       name:
@@ -17,7 +19,6 @@
       - ffmpeg
       - rsync
       - unrar
-      - p7zip
       - man
       - nmap
       - tree
@@ -49,15 +50,18 @@
       - vlc
       - kiten
       - spectacle
+      - ark
+      - ksysguard
       # Libraries + dependencies
       - gst-plugins-good
       - gst-plugins-bad
       - gst-plugins-ugly
       - gnome-keyring # for minecraft
+      - p7zip
       - sshfs
       - exfatprogs
       - kdialog
-      - kimageformats
+      - kimageformats5
       - qt5-imageformats
       - kcm-wacomtablet
       - colord-kde
