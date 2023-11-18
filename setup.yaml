@@ -121,7 +121,7 @@
 
   - name: Copy wacom scrolling script to user home directory
     ansible.builtin.copy:
-      src: "{{ playbook_dir }}/wacom_scrolling.sh"
+      src: "{{ playbook_dir }}/.wacom_scrolling.sh"
       dest: "{{ ansible_env.HOME }}"
       owner: "{{ ansible_env.USER }}"
       mode: "+x"
@@ -146,4 +146,4 @@
 
   - name: Run wacom scrolling script
     ansible.builtin.command:
-      cmd: "{{ ansible_env.HOME }}/wacom_scrolling.sh"
+      cmd: "{{ ansible_env.HOME }}/.wacom_scrolling.sh"
