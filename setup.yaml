@@ -68,6 +68,8 @@
       - xdg-desktop-portal
       - xdg-desktop-portal-kde
       - vulkan-radeon
+      - pam-u2f
+      - libfido2
       # Fonts
       - adobe-source-han-sans-jp-fonts
       - adobe-source-han-serif-jp-fonts
