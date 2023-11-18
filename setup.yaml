@@ -90,10 +90,10 @@
     become: yes
 
   # Can't build as it requires user interaction
-  # - name: Pull yay
-  #   ansible.builtin.git:
-  #     repo: https://aur.archlinux.org/yay.git
-  #     dest: /tmp/yay
+  - name: Pull yay
+    ansible.builtin.git:
+      repo: https://aur.archlinux.org/yay.git
+      dest: /tmp/yay
   # - name: Build yay
   #   command: chdir=/tmp/yay makepkg -si
 
