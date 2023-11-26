@@ -71,6 +71,7 @@
       - pam-u2f
       - libfido2
       - qt5-xmlpatterns
+      - speech-dispatcher
       # Fonts
       - adobe-source-han-sans-jp-fonts
       - adobe-source-han-serif-jp-fonts
