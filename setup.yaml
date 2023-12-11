@@ -46,7 +46,6 @@
       - qbittorrent
       - krita
       - calibre
-      - smplayer
       - vlc
       - kiten
       - spectacle
@@ -99,7 +98,7 @@
   # - name: Build yay
   #   command: chdir=/tmp/yay makepkg -si
 
-  # yay -S minecraft-launcher dropbox spotify hunspell-nb tor-browser-bin mullvad-vpn-bin
+  # yay -S minecraft-launcher dropbox spotify hunspell-nb tor-browser-bin mullvad-vpn-bin puddletag
 
   - name: Create .inputrc
     ansible.builtin.file:
