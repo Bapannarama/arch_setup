@@ -28,6 +28,7 @@
       - rustup
       - base-devel
       - yt-dlp
+      - fwupd
       # GUI applications 
       - firefox
       - kdeconnect
@@ -81,7 +82,7 @@
       - ttf-baekmuk
       - noto-fonts-emoji
       - hunspell
-      - hunspell-en_gb
+      - hunspell-en_gbAbove & Beyond 
       # Wine
       - wine-staging
       - wine-mono
